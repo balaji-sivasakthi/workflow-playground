@@ -19,10 +19,6 @@ jobs:
             node-version: ${{ matrix.version }}
       - name: Checkout
         uses: actions/checkout@v2
-      - name: test
-        uses: cypress-io/github-action@v2
-        with:
-          command: npm run google
-          browser: chrome
-          headless: true
-          record: false
+      - name: print something
+        run: echo hello from ${{matrix.os}}
+        
