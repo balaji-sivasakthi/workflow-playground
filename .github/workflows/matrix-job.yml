@@ -6,22 +6,22 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
 jobs:
-  task-1:
+  test:
     strategy:
       matrix: 
         version: [10, 12]
         os: [ ubuntu-latest, windows-latest, macos-latest]
-    run-on: ${ {matrix.os} }
+    runs-on: ${{matrix.os}}
     timeout-minutes: 120
     steps:   
-    - uses: actions/setup-node@v3
-      with:
+      - uses: actions/setup-node@v3
+        with:
             node-version: ${{ matrix.version }}
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Google-Test
-      uses: cypress-io/github-action@v2
-      with:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Google-Test
+        uses: cypress-io/github-action@v2
+        with:
           command: npm run google
           browser: chrome
           headless: true
